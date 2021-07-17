@@ -29,7 +29,9 @@ class mod_tocGhsvsInstallerScript extends InstallerScript
 	 * @var    array
 	 * @since  2.0
 	 */
-	protected $deleteFolders = array();
+	protected $deleteFolders = [
+		'/modules/mod_tocghsvs/media'
+	];
 
 	public function preflight($type, $parent)
 	{
@@ -81,5 +83,24 @@ class mod_tocGhsvsInstallerScript extends InstallerScript
 		}
 
 		return true;
+	}
+
+	/**
+	 * Runs right after any installation action is preformed on the component.
+	 *
+	 * @param  string    $type   - Type of PostFlight action. Possible values are:
+	 *                           - * install
+	 *                           - * update
+	 *                           - * discover_install
+	 * @param  \stdClass $parent - Parent object calling object.
+	 *
+	 * @return void
+	 */
+	function postflight($type, $parent)
+	{
+		if ($type === 'update')
+		{
+			$this->removeFiles();
+		}
 	}
 }
