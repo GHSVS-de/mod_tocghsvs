@@ -69,7 +69,9 @@ abstract class TocGhsvsHelper
 
 			// aria-label for UL container.
 			'ulAriaLabel' => Text::_('MOD_TOCGSHVS_ULARIALABEL'),
-			'ulRole' => 'menu',
+
+			// 'menu' wird bemeckert von a11y Tool.
+			'ulRole' => '',
 			'ulClass' => 'list-group list-group-flush',
 
 			'ulId' => 'tocGhsvsUL-%s',
