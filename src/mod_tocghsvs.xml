@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.9.25" client="site" method="upgrade">
-	<name>MOD_TOCGHSVS</name>
-	<author>G@HService Berlin Neukölln, Volkmar Volli Schlothauer (ghsvs.de)</author>
-	<creationDate>2021-03-08</creationDate>
-	<copyright>Copyright (C) 2021, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.</copyright>
-	<license>GNU GPLv3 http://www.gnu.org/licenses/gpl-3.0.html; See LICENSE.txt</license>
-	<authorUrl>http://www.ghsvs.de</authorUrl>
-	<version>2021.07.18</version>
+<extension type="module" version="3.9" client="site" method="upgrade">
+	<name>{{nameUpper}}</name>
+	<author>{{authorName}}</author>
+	<creationDate>{{creationDate}}</creationDate>
+	<copyright>{{copyright}}</copyright>
+	<license>{{licenseLong}}</license>
+	<authorUrl>{{authorUrl}}</authorUrl>
+	<version>{{version}}</version>
+	<description>{{nameUpper}}_XML_DESCRIPTION</description>
 	<versionHistory>
-		https://updates.ghsvs.de/changelog.php?file=mod_tocghsvs
+		https://updates.ghsvs.de/changelog.php?file={{name}}
 	</versionHistory>
-	<description>MOD_TOCGHSVS_XML_DESCRIPTION</description>
 
-	<updateservers><server type="extension" priority="1" name="MOD_TOCGHSVS">https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_tocghsvs-update.xml</server></updateservers>
+	<updateservers><server type="extension" priority="1" name="{{nameUpper}}">https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/{{name}}-update.xml</server></updateservers>
 
-	<changelogurl>https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_tocghsvs-changelog.xml</changelogurl>
+	<changelogurl>
+		https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/{{name}}-changelog.xml
+	</changelogurl>
 
-	<infourl>https://updates.ghsvs.de/changelog.php?file=mod_tocghsvs</infourl>
+	<infourl>https://github.com/GHSVS-de/{{name}}#readme</infourl>
 
 	<scriptfile>installerScript.php</scriptfile>
-	<minimumPhp>7.2.0</minimumPhp>
-	<minimumJoomla>3.9.0</minimumJoomla>
-	<maximumJoomla></maximumJoomla>
-	<maximumPhp></maximumPhp>
-	<allowDowngrades>1</allowDowngrades>
+	<minimumPhp>{{minimumPhp}}</minimumPhp>
+	<maximumPhp>{{maximumPhp}}</maximumPhp>
+	<minimumJoomla>{{minimumJoomla}}</minimumJoomla>
+	<maximumJoomla>{{maximumJoomla}}</maximumJoomla>
+	<allowDowngrades>{{allowDowngrades}}</allowDowngrades>
 
 	<namespace path="src">Joomla\Module\TocGhsvs</namespace>
 
 	<files>
-		<filename module="mod_tocghsvs">mod_tocghsvs.php</filename>
+		<filename module="{{name}}">{{name}}.php</filename>
 		<filename>installerScript.php</filename>
 		<filename>LICENSE.txt</filename>
 		<folder>language</folder>
@@ -36,7 +38,7 @@
 		<folder>tmpl</folder>
 	</files>
 
-	<media folder="media" destination="mod_tocghsvs">
+	<media folder="media" destination="{{name}}">
 		<folder>js</folder>
 	</media>
 
