@@ -20,21 +20,7 @@ const {
 } = require("./package.json");
 
 const Manifest = `${__dirname}/package/${name}.xml`;
-
-// Joomla media folder (target workdir) inside this project. For copy-to actions.
 const pathMedia = `./media`;
-
-// Subdirectory for copy-to actions.
-const pathMediaTarget = `vendor/swiper`;
-
-async function copyFiles (source, target) {
-  try {
-    await fse.copySync(source, target)
-    console.log(chalk.yellowBright(`Copied ${path.basename(target)}`))
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 async function cleanOut (cleanOuts) {
 	for (const file of cleanOuts)
