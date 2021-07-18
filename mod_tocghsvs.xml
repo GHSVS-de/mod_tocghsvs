@@ -32,6 +32,7 @@
 		<filename>installerScript.php</filename>
 		<filename>LICENSE.txt</filename>
 		<folder>language</folder>
+		<folder>src</folder>
 		<folder>tmpl</folder>
 	</files>
 
