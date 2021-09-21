@@ -43,10 +43,10 @@
 		"g-ncu-override-json": "ncu -u"
 	},
 	"dependencies": {
-		"npm-check-updates": "^11.8.3"
+		"npm-check-updates": "^11.8.5"
 	},
 	"devDependencies": {
-		"adm-zip": "0.5.5",
+		"adm-zip": "0.5.6",
 		"chalk": "^4.1.2",
 		"fs-extra": "10.0.0",
 		"path": "^0.12.7",
