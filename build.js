@@ -50,6 +50,9 @@ const pathMedia = `./media`;
 			`Copied "${manifestFileName}" to "./dist".`))
 	);
 
+	// Create zip file and detect checksum then.
+	const zipFilePath = `./dist/${zipFilename}`;
+
 	const zip = new (require('adm-zip'))();
 	zip.addLocalFolder("package", false);
 	await zip.writeZip(`${zipFilePath}`);
