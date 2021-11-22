@@ -57,7 +57,7 @@
 		"TOC"
 	],
 	"private": false,
-	"description": "Joomla module. Automatically creates a table of contents on the current page. Links/anchors as list that jump to bookmarks, e.g. headings.",
+	"description": "Joomla site module. Automatically creates a table of contents on the current page. Links/anchors as list that jump to bookmarks, e.g. headings.",
 	"license": "GPL-3.0",
 	"repository": {
 		"type": "git",
