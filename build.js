@@ -1,35 +1,16 @@
 const fse = require('fs-extra');
-const util = require("util");
-const rimRaf = util.promisify(require("rimraf"));
 const chalk = require('chalk');
-const path = require('path');
+const replaceXml = require('./build/replaceXml.js');
+const helper = require('./build/helper.js');
 
 const {
-	author,
-	creationDate,
-	copyright,
-	filename,
 	name,
 	version,
-	licenseLong,
-	minimumPhp,
-	maximumPhp,
-	minimumJoomla,
-	maximumJoomla,
-	allowDowngrades,
 } = require("./package.json");
 
-const Manifest = `${__dirname}/package/${name}.xml`;
+const manifestFileName = `${name}.xml`;
+const Manifest = `${__dirname}/package/${manifestFileName}`;
 const pathMedia = `./media`;
-
-async function cleanOut (cleanOuts) {
-	for (const file of cleanOuts)
-	{
-		await rimRaf(file).then(
-			answer => console.log(chalk.redBright(`rimrafed: ${file}.`))
-		).catch(error => console.log(error));
-	}
-}
 
 (async function exec()
 {
@@ -38,62 +19,83 @@ async function cleanOut (cleanOuts) {
 		`./dist`,
 	];
 
-	await cleanOut(cleanOuts);
+	await helper.cleanOut(cleanOuts);
 
-	for (const file of cleanOuts)
+	console.log(chalk.cyanBright(`Be patient! Some copy actions!`));
+	await fse.copy(`${pathMedia}`, "./package/media"
+	).then(
+		answer => console.log(chalk.yellowBright(
+			`Copied "${pathMedia}" to "./package/media".`))
+	);
+
+	await fse.copy(`./src`, `./package`
+	).then(
+		answer => console.log(chalk.yellowBright(
+			`Copied "./src/*" into "./package".`))
+	);
+
+	if (!(await fse.exists("./dist")))
 	{
-		await fse.mkdirs(file
+    	await fse.mkdir("./dist"
 		).then(
-			answer => console.log(chalk.greenBright(`Created empty ${file}`))
+			answer => console.log(chalk.yellowBright(`Created "./dist".`))
 		);
-	}
+  }
 
-	await fse.copy(`${pathMedia}`, `./package/media`
-	).then(
-		answer => console.log(chalk.greenBright(`Copied ${pathMedia} to ./package.`))
-	);
-
-	await fse.copy("./src", "./package"
-	).then(
-		answer => console.log(chalk.greenBright(`Copied ./src to ./package.`))
-	);
-
-	// ### Build manifest XML file
-	let xml = await fse.readFile(Manifest, { encoding: "utf8" });
-	xml = xml.replace(/{{name}}/g, name);
-	xml = xml.replace(/{{nameUpper}}/g, name.toUpperCase());
-	xml = xml.replace(/{{authorName}}/g, author.name);
-	xml = xml.replace(/{{creationDate}}/g, creationDate);
-	xml = xml.replace(/{{copyright}}/g, copyright);
-	xml = xml.replace(/{{licenseLong}}/g, licenseLong);
-	xml = xml.replace(/{{authorUrl}}/g, author.url);
-	xml = xml.replace(/{{version}}/g, version);
-	xml = xml.replace(/{{minimumPhp}}/g, minimumPhp);
-	xml = xml.replace(/{{maximumPhp}}/g, maximumPhp);
-	xml = xml.replace(/{{minimumJoomla}}/g, minimumJoomla);
-	xml = xml.replace(/{{maximumJoomla}}/g, maximumJoomla);
-	xml = xml.replace(/{{allowDowngrades}}/g, allowDowngrades);
-	xml = xml.replace(/{{filename}}/g, filename);
-
-	await fse.writeFile(Manifest, xml, { encoding: "utf8" }
-	).then(
-		answer => console.log(chalk.yellowBright(`Replaced entries in ${Manifest}.`))
-	);
-	// ### Build manifest XML file - END
-
-	// Zip it
 	const zipFilename = `${name}-${version}.zip`;
-	const zip = new (require("adm-zip"))();
+
+	await replaceXml.main(Manifest, zipFilename);
+	await fse.copy(`${Manifest}`, `./dist/${manifestFileName}`).then(
+		answer => console.log(chalk.yellowBright(
+			`Copied "${manifestFileName}" to "./dist".`))
+	);
+
+	const zip = new (require('adm-zip'))();
 	zip.addLocalFolder("package", false);
-	await zip.writeZip(`dist/${zipFilename}`);
+	await zip.writeZip(`${zipFilePath}`);
 	console.log(chalk.cyanBright(chalk.bgRed(
-		`./dist/${zipFilename} written.`)));
+		`"./dist/${zipFilename}" written.`)));
+
+	const Digest = 'sha256'; //sha384, sha512
+	const checksum = await helper.getChecksum(zipFilePath, Digest)
+  .then(
+		hash => {
+			const tag = `<${Digest}>${hash}</${Digest}>`;
+			console.log(chalk.greenBright(`Checksum tag is: ${tag}`));
+			return tag;
+		}
+	)
+	.catch(error => {
+		console.log(error);
+		console.log(chalk.redBright(`Error while checksum creation. I won't set one!`));
+		return '';
+	});
+
+	let xmlFile = 'update.xml';
+	await fse.copy(`./${xmlFile}`, `./dist/${xmlFile}`).then(
+		answer => console.log(chalk.yellowBright(
+			`Copied "${xmlFile}" to ./dist.`))
+	);
+	await replaceXml.main(`${__dirname}/dist/${xmlFile}`, zipFilename, checksum);
+
+	xmlFile = 'changelog.xml';
+	await fse.copy(`./${xmlFile}`, `./dist/${xmlFile}`).then(
+		answer => console.log(chalk.yellowBright(
+			`Copied "${xmlFile}" to ./dist.`))
+	);
+	await replaceXml.main(`${__dirname}/dist/${xmlFile}`, zipFilename, checksum);
+
+	xmlFile = 'release.txt';
+	await fse.copy(`./${xmlFile}`, `./dist/${xmlFile}`).then(
+		answer => console.log(chalk.yellowBright(
+			`Copied "${xmlFile}" to ./dist.`))
+	);
+	await replaceXml.main(`${__dirname}/dist/${xmlFile}`, zipFilename, checksum);
 
 	cleanOuts = [
 		`./package`,
 	];
-
-	await cleanOut(cleanOuts).then(
+	await helper.cleanOut(cleanOuts).then(
 		answer => console.log(chalk.cyanBright(chalk.bgRed(
 			`Finished. Good bye!`)))
 	);

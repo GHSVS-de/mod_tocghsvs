@@ -7,14 +7,23 @@
 - Designed for ghsvs.de Bootstrap 5 templates.
 - Needs custom CSS and JS if sticky containers on page. Not included.
 
-## My private build procedure on WSL1, Win10, Debian
+-----------------------------------------------------
+
+# My personal build procedure (WSL 1, Debian, Win 10)
 - Prepare/adapt `./package.json`.
-- Put custom Joomla `/media/` files into `./media` folder as usual. Will be installed in `/media/mod_tocghsvs/` as usual.
-- Put other files into `./src`. Don't forget to customise `./src/mod_tocghsvs.xml` if new files and folders added.
 - `cd /mnt/z/git-kram/mod_tocghsvs`
+
+## node/npm updates/installation
 - `npm run g-npm-update-check` or (faster) `ncu`
 - `npm run g-ncu-override-json` (if needed) or (faster) `ncu -u`
 - `npm install` (if needed)
-- `npm run g-build` or (faster) `node build.js`
-- Installable ZIP is in `./dist` afterwards.
-- FYI: Packed files for this ZIP can be seen in `./package`. **But only if you disable deletion of this folder at the end of `build.js`**.
+
+## Build installable ZIP package
+- `node build.js`
+- New, installable ZIP is in `./dist` afterwards.
+- All packed files for this ZIP can be seen in `./package`. **But only if you disable deletion of this folder at the end of `build.js`**.s
+
+### For Joomla update and changelog server
+- Create new release with new tag.
+- - See release description in `dist/release.txt`.
+- Extracts(!) of the update and changelog XML for update and changelog servers are in `./dist` as well. Copy/paste and necessary additions.
