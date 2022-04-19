@@ -15,7 +15,7 @@ $btnModalConnector = TocGhsvsHelper::getId($params);
 ### Not implemented yet in module settings.
 $params->set('stickySelector', '#CfButtonGruppeGhsvs');
 
-$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx', ''), ENT_COMPAT, 'UTF-8');
 
 require ModuleHelper::getLayoutPath(
 	'mod_tocghsvs', $params->get('layout', 'buttonAndModal')
