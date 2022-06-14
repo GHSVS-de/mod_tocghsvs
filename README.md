@@ -18,6 +18,13 @@
 - `npm run update` (if needed) or (faster) `npm update --save-dev`
 - `npm install` (if needed)
 
+## PHP Codestyle
+If you think it's worth it.
+- `cd /mnt/z/git-kram/php-cs-fixer-ghsvs`
+- `npm run mod_tocghsvsDry` (= dry test run).
+- `npm run mod_tocghsvs` (= cleans code).
+- `cd /mnt/z/git-kram/mod_tocghsvs` (back to this repo).
+
 ## Build installable ZIP package
 - `node build.js`
 - New, installable ZIP is in `./dist` afterwards.
