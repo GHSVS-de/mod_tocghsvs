@@ -21,7 +21,7 @@ class mod_tocGhsvsInstallerScript extends InstallerScript
 	 * @var    array
 	 * @since  2.0
 	 */
-	protected $deleteFiles = array();
+	protected $deleteFiles = [];
 
 	/**
 	 * A list of folders to be deleted with method removeFiles().
@@ -30,7 +30,7 @@ class mod_tocGhsvsInstallerScript extends InstallerScript
 	 * @since  2.0
 	 */
 	protected $deleteFolders = [
-		'/modules/mod_tocghsvs/media'
+		'/modules/mod_tocghsvs/media',
 	];
 
 	public function preflight($type, $parent)

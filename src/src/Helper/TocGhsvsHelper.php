@@ -1,12 +1,12 @@
 <?php
-\defined('_JEXEC') or die;
+defined('_JEXEC') or die;
 
-use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\Registry\Registry;
-use Joomla\CMS\Factory;
 use Joomla\CMS\Application\ApplicationHelper;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Registry\Registry;
 
 #namespace Joomla\Module\AdministratorLinkGhsvs\Administrator\Helper;
 
@@ -15,26 +15,28 @@ abstract class TocGhsvsHelper
 	public static function getId(
 		Registry $params,
 		string $moduleName = 'mod_tocghsvs'
-	) : string
-	{
+	) : string {
 		if (PluginHelper::isEnabled('system', 'bs3ghsvs'))
 		{
-			JLoader::register('Bs3ghsvsArticle',
+			JLoader::register(
+				'Bs3ghsvsArticle',
 				JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ArticleHelper.php'
 			);
 
-			$id = Bs3ghsvsArticle::buildUniqueIdFromJinput('tocGhsvs'
+			$id = Bs3ghsvsArticle::buildUniqueIdFromJinput(
+				'tocGhsvs'
 				. $params->get(
-					'btnModalConnector', $params->get('connectorKey', $moduleName)
+					'btnModalConnector',
+					$params->get('connectorKey', $moduleName)
 				)
 			);
 		}
 		else
 		{
 			$jinput = Factory::getApplication()->input;
-			$getThis = array(
-				'Itemid', 'option', 'view', 'catid', 'id', 'task'
-			);
+			$getThis = [
+				'Itemid', 'option', 'view', 'catid', 'id', 'task',
+			];
 
 			$id = $moduleName;
 
@@ -52,9 +54,10 @@ abstract class TocGhsvsHelper
 	}
 
 	public static function getScriptOptions(
-		Registry $params, String $id, $moduleId
-	) : Array
-	{
+		Registry $params,
+		String $id,
+		$moduleId
+	) : array {
 		$retarray = [
 			'divRole' => 'complementary',
 			'divTitle' => '',
@@ -80,7 +83,8 @@ abstract class TocGhsvsHelper
 
 			// Where to search in for headings.
 			'containerWithHeadings' => $params->get(
-				'containerWithHeadings', 'div.TOC_GHSVS'
+				'containerWithHeadings',
+				'div.TOC_GHSVS'
 			),
 
 			// Where the anchors will be inserted by JS.
