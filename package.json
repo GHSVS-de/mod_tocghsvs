@@ -2,17 +2,24 @@
 	"name": "mod_tocghsvs",
 	"nameReal": "mod_tocghsvs",
 	"filename": "mod_tocghsvs",
-	"version": "2021.11.22",
-	"versionCompare": "2021.07.19",
+	"version": "2022.06.17-dev",
+	"versionCompare": "2021.11.22",
 	"update": {
 		"type": "module",
 		"folder": "",
 		"client": "site",
 		"tag": "stable",
-		"targetplatform": ".*"
+		"targetplatform": [
+			"3.*",
+			"4.*"
+		],
+		"namespace": ""
 	},
 	"releaseTxt": {
-		"title": "Joomla site module mod_tocghsvs"
+		"title": "Joomla site module mod_tocghsvs",
+		"requires": [],
+		"uses": [],
+		"language": []
 	},
 	"changelog": {
 		"projecturl": "https://github.com/GHSVS-de/mod_tocghsvs",
@@ -24,7 +31,7 @@
 			"PHP 8",
 			"PHP 7.4",
 			"Joomla 3.10",
-			"Joomla 4"
+			"Joomla 4.1"
 		]
 	},
 	"minimumPhp": "7.4.2",
@@ -37,14 +44,12 @@
 	"copyright": "(C) 2021, G@HService Berlin Neukölln, Volkmar Volli Schlothauer (ghsvs.de)",
 	"author": {
 		"name": "G@HService Berlin Neukölln, Volkmar Volli Schlothauer",
-		"email": "",
-		"url": "https://www.ghsvs.de"
+		"url": "https://ghsvs.de"
 	},
 	"contributors": [
 		{
 			"name": "G@HService Berlin Neukölln, Volkmar Volli Schlothauer",
-			"email": "",
-			"url": "https://www.ghsvs.de"
+			"url": "https://ghsvs.de"
 		}
 	],
 	"bugs": "https://github.com/GHSVS-de/mod_tocghsvs/issues",
@@ -70,10 +75,8 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"adm-zip": "^0.5.9",
-		"chalk": "<5",
 		"fs-extra": "^10.1.0",
-		"rimraf": "3.0.2"
+		"picocolors": "^1.0.0"
 	},
 	"browserslist": []
 }
