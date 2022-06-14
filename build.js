@@ -36,11 +36,12 @@ let to = "";
 	];
 	await helper.cleanOut(cleanOuts);
 
-	console.log(chalk.cyanBright(`Be patient! Some copy actions!`));
+	console.log(pc.cyan(pc.bold(`Be patient! Some copy actions!`)));
 	await fse.copy(`${pathMedia}`, "./package/media"
 	).then(
-		answer => console.log(chalk.yellowBright(
+		answer => console.log(pc.yellow(pc.bold(
 			`Copied "${pathMedia}" to "./package/media".`))
+		)
 	);
 
 	from = `./src`;
