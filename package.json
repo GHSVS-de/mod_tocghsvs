@@ -2,7 +2,7 @@
 	"name": "mod_tocghsvs",
 	"nameReal": "mod_tocghsvs",
 	"filename": "mod_tocghsvs",
-	"version": "2022.06.17-dev",
+	"version": "2022.06.17",
 	"versionCompare": "2021.11.22",
 	"update": {
 		"type": "module",
@@ -28,7 +28,8 @@
 		"docsDE": "",
 		"docsEN": "",
 		"lastTests": [
-			"PHP 8",
+			"PHP 8.0",
+			"PHP 8.1",
 			"PHP 7.4",
 			"Joomla 3.10",
 			"Joomla 4.1"
@@ -69,7 +70,7 @@
 		"url": "https://github.com/GHSVS-de/mod_tocghsvs.git"
 	},
 	"scripts": {
-		"g-build": "node build.js",
+		"build": "node build.js",
 		"updateCheck": "npm outdated",
 		"update": "npm update --save-dev"
 	},
