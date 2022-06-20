@@ -10,6 +10,9 @@
 -----------------------------------------------------
 
 # My personal build procedure (WSL 1, Debian, Win 10)
+
+**@since v2022.06.22: Build procedure uses local repo fork of https://github.com/GHSVS-de/buildKramGhsvs**
+
 - Prepare/adapt `./package.json`.
 - `cd /mnt/z/git-kram/mod_tocghsvs`
 
