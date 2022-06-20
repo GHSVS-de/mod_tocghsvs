@@ -3,8 +3,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
-echo PHP_EOL . '<!--File: ' . str_replace(JPATH_SITE, '', dirname(__FILE__)) . '/' . basename(__FILE__) . '-->' . PHP_EOL;
-
 /* To calculate a unique id for both participating modules (button and modal) we need a
 identical base in both modules. */
 // Set already otherwise? E.g. in layout buttonAndModal.php.
@@ -41,8 +39,6 @@ $document->addScriptOptions(
 		]
 );
 
-// Why?
-//HTMLHelper::_('behavior.core');
 HTMLHelper::_(
 	'script',
 	'mod_tocghsvs/tocGhsvs.min.js',
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function()
 
 			link.addEventListener('click', (e) => {
 				myModalEl$module->id.hide();
-				//e.stopImmediatePropagation();
 			});
 	});
 });
