@@ -2,8 +2,8 @@
 	"name": "mod_tocghsvs",
 	"nameReal": "mod_tocghsvs",
 	"filename": "mod_tocghsvs",
-	"version": "2022.06.17",
-	"versionCompare": "2021.11.22",
+	"version": "2022.06.22",
+	"versionCompare": "2022.06.17",
 	"update": {
 		"type": "module",
 		"folder": "",
