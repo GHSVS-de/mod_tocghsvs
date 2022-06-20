@@ -11,8 +11,13 @@ const releaseTxt = `${pathBuildKram}/release.txt`;
 const replaceXml = require(`${pathBuildKram}/replaceXml.js`);
 const helper = require(`${pathBuildKram}/helper.js`);
 
-const fse = require('fs-extra');
-const pc = require('picocolors');
+const pc = require(`${pathBuildKram}/node_modules/picocolors`);
+const fse = require(`${pathBuildKram}/node_modules/fs-extra`);
+
+let replaceXmlOptions = {};
+let zipOptions = {};
+let from = "";
+let to = "";
 
 const {
 	name,
@@ -22,11 +27,6 @@ const {
 const manifestFileName = `${name}.xml`;
 const Manifest = `${__dirname}/package/${manifestFileName}`;
 const pathMedia = `./media`;
-
-let replaceXmlOptions = {};
-let zipOptions = {};
-let from = "";
-let to = "";
 
 (async function exec()
 {
