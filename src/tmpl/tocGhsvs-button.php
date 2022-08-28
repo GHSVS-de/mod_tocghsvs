@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Language\Text;
+use Joomla\Module\TocGhsvs\Site\Helper\TocGhsvsHelper;
 
 echo PHP_EOL . '<!--File: ' . str_replace(JPATH_SITE, '', dirname(__FILE__)) . '/' . basename(__FILE__) . '-->' . PHP_EOL;
 

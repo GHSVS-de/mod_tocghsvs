@@ -1,5 +1,7 @@
 <?php
-defined('_JEXEC') or die;
+namespace Joomla\Module\TocGhsvs\Site\Helper;
+
+\defined('_JEXEC') or die;
 
 use Joomla\CMS\Application\ApplicationHelper;
 use Joomla\CMS\Factory;
@@ -7,27 +9,37 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
-
-#namespace Joomla\Module\AdministratorLinkGhsvs\Administrator\Helper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 abstract class TocGhsvsHelper
 {
-	public static function getId(
-		Registry $params,
-		string $moduleName = 'mod_tocghsvs'
-	) : string {
+	protected static $isJ3 = true;
+
+	protected static $wa = null;
+
+	protected static $loaded = [];
+
+	private static $name = 'mod_tocghsvs';
+
+	protected static function init()
+	{
+		self::$isJ3 = version_compare(JVERSION, '4', 'lt');
+	}
+
+	public static function getId(Registry $params) : string
+	{
 		if (PluginHelper::isEnabled('system', 'bs3ghsvs'))
 		{
-			JLoader::register(
+			\JLoader::register(
 				'Bs3ghsvsArticle',
 				JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ArticleHelper.php'
 			);
 
-			$id = Bs3ghsvsArticle::buildUniqueIdFromJinput(
+			$id = \Bs3ghsvsArticle::buildUniqueIdFromJinput(
 				'tocGhsvs'
 				. $params->get(
 					'btnModalConnector',
-					$params->get('connectorKey', $moduleName)
+					$params->get('connectorKey', self::$name)
 				)
 			);
 		}
@@ -38,11 +50,11 @@ abstract class TocGhsvsHelper
 				'Itemid', 'option', 'view', 'catid', 'id', 'task',
 			];
 
-			$id = $moduleName;
+			$id = self::$name;
 
 			foreach ($getThis as $GetMe)
 			{
-				$id .= '_' . $jinput->get($GetMe);
+				$id .= '_' . $jinput->get($GetMe, '');
 			}
 
 			$id = $prefix . '_' . md5(
@@ -128,4 +140,53 @@ abstract class TocGhsvsHelper
 
 		return $retarray;
 	}
+
+	public static function loadAssets(&$params)
+	{
+		$wa = self::getWa();
+
+		if ($wa) {
+			$wa->useScript(self::$name . '.core');
+			$wa->useStyle(self::$name . '.override.template');
+		} else {
+			$version = self::getMediaVersion();
+			HTMLHelper::_('script', self::$name . '/tocGhsvs.min.js',
+				['version' => $version, 'relative' => true], ['defer' => true]
+			);
+			HTMLHelper::_('stylesheet', self::$name . '.css',
+				['version' => $version, 'relative' => true]
+			);
+		}
+	}
+
+	public static function getWa()
+	{
+		self::init();
+
+		if (self::$isJ3 === false && empty(self::$wa))
+		{
+			self::$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+			self::$wa->getRegistry()->addExtensionRegistryFile(self::$name);
+		}
+
+		return self::$wa;
+	}
+
+	public static function getMediaVersion()
+	{
+		if (!isset(self::$loaded['mediaVersion']))
+		{
+			if (!(self::$loaded['mediaVersion'] =  json_decode(
+				file_get_contents(
+				JPATH_ROOT . '/media/' . self::$name . '/joomla.asset.json'
+			)
+			)->version)
+			) {
+				self::$loaded['mediaVersion'] = 'auto';
+			}
+		}
+
+		return self::$loaded['mediaVersion'];
+	}
+
 }

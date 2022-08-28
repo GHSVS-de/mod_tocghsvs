@@ -39,10 +39,9 @@
 
 	<media folder="media" destination="{{name}}">
 		<folder>js</folder>
+		<filename>joomla.asset.json</filename>
 	</media>
-
-	<namespace path="src">Joomla\Module\TocGhsvs</namespace>
-
+	{{namespace}}
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
@@ -93,7 +92,7 @@
 				</field>
 
 				<field name="stickySelectorSpacer" type="note"
-					class="alertsss alert-info"
+					class="alert alert-info"
 					label="MOD_TOCGSHVS_STICKYSELECTOR"
 					description="MOD_TOCGSHVS_STICKYSELECTOR_DESC"/>
 

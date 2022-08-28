@@ -2,6 +2,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\Module\TocGhsvs\Site\Helper\TocGhsvsHelper;
 
 /* To calculate a unique id for both participating modules (button and modal) we need a
 identical base in both modules. */
@@ -16,11 +17,7 @@ else
 	$id = TocGhsvsHelper::getId($params);
 }
 
-$scriptOptions = TocGhsvsHelper::getScriptOptions(
-	$params,
-	$id,
-	$module->id
-);
+$scriptOptions = TocGhsvsHelper::getScriptOptions($params, $id, $module->id);
 
 ### Custom overrides START
 /* Here you can override the $scriptOptions array because not all parameters
@@ -39,13 +36,6 @@ $document->addScriptOptions(
 		]
 );
 
-HTMLHelper::_(
-	'script',
-	'mod_tocghsvs/tocGhsvs.min.js',
-	['version' => 'auto', 'relative' => true],
-	['defer' => true]
-);
-
 $document->addScriptDeclaration(
 <<<JS
 document.addEventListener('DOMContentLoaded', function()
@@ -56,10 +46,6 @@ document.addEventListener('DOMContentLoaded', function()
 	document.getElementById("$id").querySelectorAll("#$id a[href*=\"#\"]")
 		.forEach((link) =>
 		{
-			/*
-			JQuery would simply use .not("[href=\"#\"]").not("[href=\"#0\"]")
-			but vanilla is too stupid for CSS :not()-selectors.
-			*/
 			let parts = link.href.split('#');
 
 			if (! parts[1] || parts[1] === '0')
