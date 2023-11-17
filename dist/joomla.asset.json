@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "mod_tocghsvs",
+  "version": "2022.08.28",
+  "description": "Joomla site module. Automatically creates a table of contents on the current page. Links/anchors as list that jump to bookmarks, e.g. headings.",
+  "license": "GNU General Public License version 3 or later; see LICENSE.txt.",
+  "assets": [
+    {
+			"name": "mod_tocghsvs.core",
+			"uri": "mod_tocghsvs/tocGhsvs.js",
+			"version": "2022.08.28",
+			"type": "script",
+			"weight": -5000,
+			"attributes": {"defer": true}
+    },
+		{
+			"name": "mod_tocghsvs.override.template",
+			"version": "2022.08.28",
+			"uri": "mod_tocghsvs.css",
+			"type": "style",
+			"weight": 500
+		}
+  ]
+}
