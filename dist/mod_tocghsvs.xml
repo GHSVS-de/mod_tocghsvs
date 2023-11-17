@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" method="upgrade">
+	<name>MOD_TOCGHSVS</name>
+	<author>G@HService Berlin Neukölln, Volkmar Volli Schlothauer</author>
+	<creationDate>2021-03-08</creationDate>
+	<copyright>(C) 2021, G@HService Berlin Neukölln, Volkmar Volli Schlothauer (ghsvs.de)</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt.</license>
+	<authorUrl>https://ghsvs.de</authorUrl>
+	<version>2022.08.28</version>
+	<description>MOD_TOCGHSVS_XML_DESCRIPTION</description>
+
+	<updateservers><server type="extension" priority="1" name="MOD_TOCGHSVS">https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_tocghsvs-update.xml</server></updateservers>
+
+	<changelogurl>https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_tocghsvs-changelog.xml</changelogurl>
+
+	<infourl>https://updates.ghsvs.de/changelog.php?file=mod_tocghsvs</infourl>
+
+	<downloadUrl>https://github.com/GHSVS-de/mod_tocghsvs/raw/2022.08.28/dist/mod_tocghsvs-2022.08.28.zip</downloadUrl>
+
+	<versionCompare>
+	https://github.com/GHSVS-de/mod_tocghsvs/compare/2022.06.17...2022.08.28
+	</versionCompare>
+
+	<scriptfile>installerScript.php</scriptfile>
+	<minimumPhp>7.4.2</minimumPhp>
+	<maximumPhp>8.99999.99999</maximumPhp>
+	<minimumJoomla>3.10.1</minimumJoomla>
+	<maximumJoomla>4.9999.9999</maximumJoomla>
+	<allowDowngrades>1</allowDowngrades>
+
+	<files>
+		<filename module="mod_tocghsvs">mod_tocghsvs.php</filename>
+		<filename>installerScript.php</filename>
+		<filename>LICENSE.txt</filename>
+		<folder>language</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<media folder="media" destination="mod_tocghsvs">
+		<folder>js</folder>
+		<filename>joomla.asset.json</filename>
+	</media>
+	<namespace path="src">Joomla\Module\TocGhsvs</namespace>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field name="btnModalConnectorSpacer" type="note"
+					class="alertsss alert-info"
+					label="MOD_TOCGSHVS_BTNMODALCONNECTOR"
+					description="MOD_TOCGSHVS_BTNMODALCONNECTOR_DESC"/>
+
+				<field name="btnModalConnector" type="text" filter="alnum"
+					class="extended-width"
+					label="MOD_TOCGSHVS_BTNMODALCONNECTOR" />
+			</fieldset>
+
+			<fieldset name="settings" label="MOD_TOCGSHVS_SETTINGSFIELDSET">
+
+				<field name="settingsFieldsetSpacer" type="note"
+					class="alert alert-danger"
+					label="MOD_TOCGSHVS_SETTINGSFIELDSET"
+					description="MOD_TOCGSHVS_SETTINGSFIELDSET_DESC"/>
+				<field name="headingsSpacer" type="note"
+					class="alertsss alert-info"
+					label="MOD_TOCGSHVS_HEADINGS"
+					description="MOD_TOCGSHVS_HEADINGS_DESC"/>
+
+				<field name="headings" type="text" filter="trim" default="h2,h3"
+					required="true" class="extended-width"
+					label="MOD_TOCGSHVS_HEADINGS" />
+
+				<field name="containerWithHeadingsSpacer" type="note"
+					class="alertsss alert-info"
+					label="MOD_TOCGSHVS_CONTAINERWITHHEADINGS"
+					description="MOD_TOCGSHVS_CONTAINERWITHHEADINGS_DESC"/>
+
+				<field name="containerWithHeadings" type="text" filter="trim"
+					default="" class="extended-width"
+					label="MOD_TOCGSHVS_CONTAINERWITHHEADINGS" />
+
+				<field name="displayInvisibleSpacer" type="note"
+					class="alertsss alert-info"
+					label="MOD_TOCGSHVS_DISPLAYINVISIBLE"
+					description="MOD_TOCGSHVS_DISPLAYINVISIBLE_DESC"/>
+
+				<field name="displayInvisible" type="list" filter="integer" default="1"
+					label="MOD_TOCGSHVS_DISPLAYINVISIBLE">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="stickySelectorSpacer" type="note"
+					class="alert alert-info"
+					label="MOD_TOCGSHVS_STICKYSELECTOR"
+					description="MOD_TOCGSHVS_STICKYSELECTOR_DESC"/>
+
+				<field name="stickySelector" type="text" filter="trim"
+					hint="E.g. #astroid-sticky-header"
+					class="extended-width"
+					label="MOD_TOCGSHVS_STICKYSELECTOR" />
+			</fieldset>
+
+			<fieldset name="advanced">
+
+				<field name="layout" type="modulelayout"
+					class="custom-select"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field name="moduleclass_sfx" type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" />
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
