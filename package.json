@@ -4,7 +4,9 @@
 	"filename": "mod_tocghsvs",
 	"version": "2022.08.28",
 	"versionCompare": "2022.06.17",
+	"versionSub": "",
 	"update": {
+		"infourl": "https://github.com/GHSVS-de/mod_tocghsvs{{thisRelease}}",
 		"type": "module",
 		"folder": "",
 		"client": "site",
@@ -36,7 +38,7 @@
 		]
 	},
 	"minimumPhp": "7.4.2",
-	"maximumPhp": "8.99999.99999",
+	"maximumPhp": "",
 	"minimumJoomla": "3.10.1",
 	"maximumJoomla": "4.9999.9999",
 	"allowDowngrades": "1",

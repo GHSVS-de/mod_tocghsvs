@@ -11,11 +11,7 @@
 
 	<updateservers><server type="extension" priority="1" name="{{nameUpper}}">{{xmlserver}}/{{name}}-update.xml</server></updateservers>
 
-	<changelogurl>{{xmlserver}}/{{name}}-changelog.xml</changelogurl>
-
-	<infourl>{{infourl}}?file={{name}}</infourl>
-
-	<downloadUrl>https://github.com/GHSVS-de/{{name}}/raw/{{version}}/dist/{{zipFilename}}</downloadUrl>
+	<infourl>{{infourl}}</infourl>
 
 	<scriptfile>installerScript.php</scriptfile>
 	<minimumPhp>{{minimumPhp}}</minimumPhp>
