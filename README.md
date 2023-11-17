@@ -17,16 +17,9 @@
 - `cd /mnt/z/git-kram/mod_tocghsvs`
 
 ## node/npm updates/installation
-- `npm run updateCheck` or (faster) `npm outdated`
-- `npm run update` (if needed) or (faster) `npm update --save-dev`
+- `npm run updateCheck`
+- `npm run update`
 - `npm install` (if needed)
-
-## PHP Codestyle
-If you think it's worth it.
-- `cd /mnt/z/git-kram/php-cs-fixer-ghsvs`
-- `npm run mod_tocghsvsDry` (= dry test run).
-- `npm run mod_tocghsvs` (= cleans code).
-- `cd /mnt/z/git-kram/mod_tocghsvs` (back to this repo).
 
 ## Build installable ZIP package
 - `node build.js`
@@ -35,5 +28,5 @@ If you think it's worth it.
 
 ### For Joomla update and changelog server
 - Create new release with new tag.
-- - See release description in `dist/release.txt`.
-- Extracts(!) of the update and changelog XML for update and changelog servers are in `./dist` as well. Copy/paste and necessary additions.
+  - See release description in `dist/release_no-changelog.txt`.
+- Extracts of the update XML for update servers are in `./dist` as well. Copy/paste and necessary additions.
