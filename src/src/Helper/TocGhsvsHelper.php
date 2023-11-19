@@ -12,9 +12,9 @@ use Joomla\Registry\Registry;
 use Joomla\CMS\HTML\HTMLHelper;
 
 // @since 2023-11
-use GHSVS\Plugin\System\Bs3Ghsvs\Helper\Bs3GhsvsArticleHelper as Bs3ghsvsArticle;
+use GHSVS\Plugin\System\Bs3Ghsvs\Helper\Bs3GhsvsArticleHelper;
 
-abstract class TocGhsvsHelper
+class TocGhsvsHelper
 {
 	protected static $isJ3 = true;
 
@@ -31,9 +31,9 @@ abstract class TocGhsvsHelper
 
 	public static function getId(Registry $params) : string
 	{
-		if (class_exists('Bs3ghsvsArticle'))
+		if (class_exists(Bs3GhsvsArticleHelper::class))
 		{
-			$id = \Bs3ghsvsArticle::buildUniqueIdFromJinput(
+			$id = Bs3GhsvsArticleHelper::buildUniqueIdFromJinput(
 				'tocGhsvs'
 				. $params->get(
 					'btnModalConnector',
