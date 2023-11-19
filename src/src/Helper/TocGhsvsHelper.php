@@ -11,6 +11,9 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 use Joomla\CMS\HTML\HTMLHelper;
 
+// @since 2023-11
+use GHSVS\Plugin\System\Bs3Ghsvs\Helper\Bs3GhsvsArticleHelper as Bs3ghsvsArticle;
+
 abstract class TocGhsvsHelper
 {
 	protected static $isJ3 = true;
@@ -28,13 +31,8 @@ abstract class TocGhsvsHelper
 
 	public static function getId(Registry $params) : string
 	{
-		if (PluginHelper::isEnabled('system', 'bs3ghsvs'))
+		if (class_exists('Bs3ghsvsArticle'))
 		{
-			\JLoader::register(
-				'Bs3ghsvsArticle',
-				JPATH_PLUGINS . '/system/bs3ghsvs/Helper/ArticleHelper.php'
-			);
-
 			$id = \Bs3ghsvsArticle::buildUniqueIdFromJinput(
 				'tocGhsvs'
 				. $params->get(
@@ -56,7 +54,7 @@ abstract class TocGhsvsHelper
 			{
 				$id .= '_' . $jinput->get($GetMe, '');
 			}
-
+$prefix = 'tocGhsvs';
 			$id = $prefix . '_' . md5(
 				ApplicationHelper::stringURLSafe(base64_encode($id))
 			);
