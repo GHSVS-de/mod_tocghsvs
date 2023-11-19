@@ -1,5 +1,5 @@
 <?php
-namespace Joomla\Module\TocGhsvs\Site\Helper;
+namespace GHSVS\Module\TocGhsvs\Site\Helper;
 
 \defined('_JEXEC') or die;
 

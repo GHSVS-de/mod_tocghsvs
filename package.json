@@ -15,7 +15,7 @@
 			"3.*",
 			"4.*"
 		],
-		"namespace": "Joomla\\Module\\TocGhsvs"
+		"namespace": "GHSVS\\Module\\TocGhsvs"
 	},
 	"releaseTxt": {
 		"title": "Joomla site module mod_tocghsvs",

@@ -4,13 +4,13 @@ defined('_JEXEC') or die;
 if (version_compare(JVERSION, '4', 'lt'))
 {
 	JLoader::registerNamespace(
-		'Joomla\Module\TocGhsvs\Site',
+		'GHSVS\Module\TocGhsvs\Site',
 		__DIR__ . '/src', false, false, 'psr4'
 	);
 }
 
 use Joomla\CMS\Helper\ModuleHelper;
-use Joomla\Module\TocGhsvs\Site\Helper\TocGhsvsHelper;
+use GHSVS\Module\TocGhsvs\Site\Helper\TocGhsvsHelper;
 
 TocGhsvsHelper::loadAssets($params);
 
